@@ -1,4 +1,8 @@
-export default function TaskList() {
+import { FaStar } from "react-icons/fa";
+
+/* eslint-disable react/prop-types */
+export default function TaskList({ tasks, onEdit }) {
+  // console.log(tasks);
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -28,47 +32,54 @@ export default function TaskList() {
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
-            <td>
-              {/* <button onClick={() => onFav(task.id)}>
+          {tasks.map((task) => (
+            <tr
+              key={task.id}
+              className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2"
+            >
+              <td>
+                <button>
                   {task.isFavorite ? (
                     <FaStar color="yellow" />
                   ) : (
                     <FaStar color="gray" />
                   )}
-                </button> */}
-            </td>
-            <td>arif</td>
-            <td>
-              <div>ARfi</div>
-            </td>
-            <td>
-              <ul className="flex justify-center gap-1.5 flex-wrap">
-                <li>
-                  <span className="inline-block h-5 whitespace-nowrap rounded-[45px] bg-[#00D991A1] px-2.5 text-sm capitalize text-[#F4F5F6]">
-                    arif
-                  </span>
-                </li>
-              </ul>
-            </td>
-            <td className="text-center">TAra</td>
-            <td>
-              <div className="flex items-center justify-center space-x-3">
-                <button
-                  className="text-red-500"
-                  // onClick={() => onDelete(task.id)}
-                >
-                  Delete
                 </button>
-                <button
-                  className="text-blue-500"
-                  // onClick={() => onEdit(task)}
-                >
-                  Edit
-                </button>
-              </div>
-            </td>
-          </tr>
+              </td>
+              <td>{task.title}</td>
+              <td>
+                <div>{task.description}</div>
+              </td>
+              <td>
+                <ul className="flex justify-center gap-1.5 flex-wrap">
+                  {task.tags.map((tag) => (
+                    <li key={tag}>
+                      <span className="inline-block h-5 whitespace-nowrap rounded-[45px] bg-[#00D991A1] px-2.5 text-sm capitalize text-[#F4F5F6]">
+                        {tag}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </td>
+              <td className="text-center">{task.priority}</td>
+              <td>
+                <div className="flex items-center justify-center space-x-3">
+                  <button
+                    className="text-red-500"
+                    // onClick={() => onDelete(task.id)}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="text-blue-500"
+                    onClick={() => onEdit(task)}
+                  >
+                    Edit
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
