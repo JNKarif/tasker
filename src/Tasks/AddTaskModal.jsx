@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-export default function AddTaskModal({ onSave, taskToUpdate }) {
+export default function AddTaskModal({ onSave, taskToUpdate, onCloseClick }) {
   const [task, setTask] = useState(
     taskToUpdate || {
       id: crypto.randomUUID(),
@@ -100,7 +100,7 @@ export default function AddTaskModal({ onSave, taskToUpdate }) {
         <div className="mt-16 flex justify-between lg:mt-20">
           <button
             className="rounded bg-red-600 px-4 py-2 text-white transition-all hover:opacity-80"
-            // onClick={onCloseClick}
+            onClick={onCloseClick}
           >
             Close
           </button>
